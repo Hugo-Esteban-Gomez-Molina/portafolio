@@ -121,6 +121,17 @@ img, video { max-width: 100%; display: block; }
 .contacto { text-align: center; padding: 90px 0 70px; border-top: 1px solid var(--linea); }
 .contacto h2 { font-size: clamp(40px, 6vw, 60px); line-height: 1.05; }
 .contacto p { color: var(--gris); margin: 12px 0 28px; }
+/* Correo visible + copiar (por si el ordenador no tiene app de correo) */
+.correo { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px; margin-top: 18px; font-size: 15px; }
+.correo-dir { color: var(--texto); user-select: all; overflow-wrap: anywhere; }
+.copiar { background: transparent; border: 0; box-shadow: inset 0 0 0 1px #d6d6dc; border-radius: 999px; padding: 5px 14px; font: inherit; font-size: 13px; color: var(--tinta); cursor: pointer; transition: box-shadow .2s; }
+.copiar:hover, .copiar:focus-visible { box-shadow: inset 0 0 0 1px var(--tinta); outline: none; }
+.copiar-caja { position: relative; display: inline-flex; }
+/* El aviso flota al lado del botón sin ocupar sitio, para que la línea quede centrada */
+.copiado { position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 13px; color: var(--gris); opacity: 0; transition: opacity .2s; pointer-events: none; }
+@media (max-width: 520px) { .copiado { left: 50%; top: calc(100% + 6px); transform: translateX(-50%); } }
+.copiado::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--nyx); }
+.copiado.visto { opacity: 1; }
 .redes { display: flex; gap: 28px; justify-content: center; margin-top: 26px; font-size: 14px; }
 .redes a { color: var(--gris); border-bottom: 1px solid #d6d6dc; padding-bottom: 2px; transition: color .2s, border-color .2s; }
 .redes a:hover { color: var(--tinta); border-color: var(--tinta); }

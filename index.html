@@ -73,6 +73,8 @@
   <h2 class="serif" data-i18n="contacto.titulo">Hablemos.</h2>
   <p data-i18n="contacto.texto">¿Tienes una idea, una oferta o una pregunta sobre Nyx? Escríbeme.</p>
   <a class="btn" href="mailto:hugoestebangomezmolinad@gmail.com"><span class="punto"></span><span data-i18n="contacto.btn">Enviar un correo</span></a>
+  <!-- El correo también escrito y con botón de copiar, por si el ordenador no tiene aplicación de correo -->
+  <div class="correo"><span class="correo-dir">hugoestebangomezmolinad@gmail.com</span><span class="copiar-caja"><button class="copiar" type="button" data-i18n="contacto.copiar">Copiar</button><span class="copiado" role="status" aria-live="polite"></span></span></div>
   <div class="redes"><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
 </div></section>
 <footer class="pie" data-i18n="pie">© 2026 · Hugo Esteban Gómez Molina</footer>
@@ -97,6 +99,33 @@ addEventListener("load", () => {
   // Si la página no se ve, todo quieto
   document.addEventListener("visibilitychange", () => escena.classList.toggle("parado", document.hidden));
 });
+
+// Copiar el correo: portapapeles moderno y, si no está disponible, el método antiguo. Aviso "Copiado" en el idioma actual.
+(() => {
+  const boton = document.querySelector(".copiar");
+  if (!boton) return;
+  const dir = document.querySelector(".correo-dir");
+  const aviso = document.querySelector(".copiado");
+  const es = () => document.documentElement.lang === "es";
+  const antiguo = texto => {
+    const t = document.createElement("textarea");
+    t.value = texto; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.appendChild(t); t.select();
+    let ok = false; try { ok = document.execCommand("copy"); } catch (e) { /* nada */ }
+    t.remove(); return ok;
+  };
+  let reloj;
+  boton.addEventListener("click", async () => {
+    const texto = dir.textContent.trim();
+    let ok = false;
+    try { await navigator.clipboard.writeText(texto); ok = true; } catch (e) { ok = antiguo(texto); }
+    if (!ok) getSelection().selectAllChildren(dir);   // si no se pudo, queda seleccionado para Ctrl+C
+    aviso.textContent = ok ? (es() ? "Copiado" : "Copied") : (es() ? "Pulsa Ctrl+C" : "Press Ctrl+C");
+    aviso.classList.add("visto");
+    clearTimeout(reloj);
+    reloj = setTimeout(() => aviso.classList.remove("visto"), 2200);
+  });
+})();
 </script>
 </body>
 </html>

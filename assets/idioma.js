@@ -64,6 +64,7 @@
     "contacto.titulo": ["Hablemos.", "Let’s talk."],
     "contacto.texto": ["¿Tienes una idea, una oferta o una pregunta sobre Nyx? Escríbeme.", "Have an idea, an offer or a question about Nyx? Write to me."],
     "contacto.btn": ["Enviar un correo", "Send an email"],
+    "contacto.copiar": ["Copiar", "Copy"],
 
     // --- Fichas (por ahora con texto de ejemplo) ---
     "f.volver": ["← Volver al menú", "← Back to the menu"],

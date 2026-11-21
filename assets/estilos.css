@@ -1,0 +1,171 @@
+/* ==== Colores. El rojo solo para detalles: nunca en textos ni botones ==== */
+:root {
+  --nyx: #FF2A45;          /* Rojo de Nyx principal: detalles (halo, brillo, puntos) */
+  --nyx-oscuro: #B0142F;   /* Rojo de Nyx oscuro: la luna (logo y favicon) */
+  --tinta: #141416;
+  --texto: #3a3a3f;
+  --gris: #76767d;
+  --linea: #ebebef;
+  --suave: #f6f6f8;
+  --fondo: #ffffff;
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--fondo); color: var(--tinta); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img, video { max-width: 100%; display: block; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.serif { font-family: var(--serif); font-weight: 400; }
+
+/* ==== Cabecera ==== */
+.cabecera { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.82); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); }
+.cabecera nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -.01em; }
+.logo svg { width: 22px; height: 22px; flex: none; color: var(--nyx-oscuro); }
+.cabecera ul { display: flex; gap: 28px; list-style: none; font-size: 14px; }
+.cabecera ul a { color: var(--gris); transition: color .2s; }
+.cabecera ul a:hover { color: var(--tinta); }
+/* Selector de idioma: discreto, igual que los enlaces del menú */
+.idioma { background: none; border: 0; padding: 0; font: inherit; font-size: 14px; color: var(--gris); cursor: pointer; transition: color .2s; }
+.idioma:hover { color: var(--tinta); }
+.cabecera ul { align-items: center; }
+
+/* ==== Botones neutros: el rojo solo como punto de detalle ==== */
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--tinta); color: #fff; padding: 13px 22px; border-radius: 999px; font-weight: 500; font-size: 15px; transition: transform .2s, box-shadow .2s; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(20,20,22,.45); }
+.btn .punto { width: 6px; height: 6px; border-radius: 50%; background: var(--nyx); }
+.btn.sec { background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 1px #d6d6dc; }
+.btn.sec:hover { box-shadow: inset 0 0 0 1px var(--tinta); }
+
+/* ==== Portada "Latido" ==== */
+.portada { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; padding: 72px 0 64px; }
+.portada .eti { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: var(--gris); letter-spacing: .04em; }
+.portada .eti::before { content: ""; width: 22px; height: 1px; background: var(--nyx); }
+.portada h1 { font-size: clamp(44px, 6.4vw, 78px); line-height: 1.02; letter-spacing: -.015em; margin: 18px 0 22px; }
+.portada h1 em { font-style: italic; color: var(--texto); }
+.portada p.intro { color: var(--gris); font-size: 18px; max-width: 44ch; }
+.acciones { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0 44px; }
+
+/* ==== Luna de la portada: inspirada en el fondo animado de Nyx ====
+   Capas y animaciones (medidas relativas a la luna, en proporción 3:4):
+   - .niebla: bruma roja de Vanta.js FOG (three.js), centrada en la luna, difuminada hacia fuera y que "respira".
+   - .luna-img: assets/luna/luna.svg, luna menguante propia dibujada en SVG (3:4). Para cambiarla, sustituye ese archivo.
+   - .brillo-img: la misma luna desenfocada y más encendida que late (dos golpes cada 2,6 s), hecha con CSS.
+   Adaptación a fondo blanco: la niebla usa tonos claros del rojo de Nyx y el brillo
+   se mezcla normal (en "screen", sobre blanco no se vería). */
+.escena { position: relative; aspect-ratio: 3 / 4; width: min(360px, 70vw); justify-self: center; }
+.escena > * { position: absolute; display: block; pointer-events: none; user-select: none; }
+.luna-img { left: 0; top: 0; width: 100%; height: 100%; }
+.brillo-img { left: 0; top: 0; width: 100%; height: 100%; opacity: .2; filter: blur(14px) saturate(1.6) brightness(1.35);
+  will-change: opacity, transform; animation: latido 2.6s ease-in-out infinite; }
+@keyframes latido {
+  0%   { opacity: .10; transform: scale(1); }
+  9%   { opacity: .46; transform: scale(1.012); }   /* primer golpe */
+  17%  { opacity: .24; transform: scale(1.004); }
+  26%  { opacity: .38; transform: scale(1.009); }   /* segundo golpe */
+  48%  { opacity: .12; transform: scale(1); }
+  100% { opacity: .10; transform: scale(1); }
+}
+.niebla { left: -18.48%; top: -18.64%; width: 136.36%; height: 102.27%; opacity: .8;
+  -webkit-mask: radial-gradient(circle, #000 0, #000 40%, transparent 70%); mask: radial-gradient(circle, #000 0, #000 40%, transparent 70%);
+  animation: respirar 2.6s ease-in-out infinite; will-change: opacity, transform; }
+.niebla canvas { position: absolute !important; inset: 0; width: 100% !important; height: 100% !important; }
+@keyframes respirar {   /* mismos tiempos que el latido de la luna, más marcado para que se note */
+  0%   { opacity: .50; transform: scale(1); }
+  9%   { opacity: 1;   transform: scale(1.045); }   /* primer golpe */
+  17%  { opacity: .70; transform: scale(1.015); }
+  26%  { opacity: .90; transform: scale(1.035); }   /* segundo golpe */
+  48%  { opacity: .54; transform: scale(1.002); }
+  100% { opacity: .50; transform: scale(1); }
+}
+/* Si la página no se ve, todo quieto */
+.parado .brillo-img, .parado .niebla { animation-play-state: paused; }
+
+/* Cifras */
+.cifras { display: flex; gap: 40px; flex-wrap: wrap; }
+.cifras div { display: flex; flex-direction: column; }
+.cifras b { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1; }
+.cifras span { font-size: 13px; color: var(--gris); margin-top: 6px; }
+
+/* ==== Vídeo ==== */
+.bloque-video { margin-bottom: 110px; }
+.video { position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: var(--suave); border: 1px solid var(--linea); display: grid; place-items: center; color: var(--gris); font-size: 15px; }
+.video .play { display: flex; align-items: center; gap: 14px; padding: 0 16px; text-align: center; }
+.video .play i { flex: none; width: 58px; height: 58px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+.video .play i::before { content: ""; border-left: 14px solid var(--tinta); border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 4px; }
+.video video { width: 100%; height: 100%; object-fit: cover; }
+
+/* ==== Carta de proyectos ==== */
+.carta { max-width: 880px; margin: 0 auto 110px; }
+.carta-cabecera { text-align: center; margin-bottom: 28px; }
+.carta-cabecera .eti { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gris); }
+.carta-cabecera .eti::before, .carta-cabecera .eti::after { content: "—"; margin: 0 12px; color: #c9c9cf; }
+.carta-cabecera h2 { font-size: clamp(38px, 6vw, 54px); line-height: 1.1; margin-top: 8px; font-style: italic; }
+.plato { position: relative; display: grid; grid-template-columns: 36px 64px 1fr; gap: 18px; align-items: center; padding: 18px 16px; border-bottom: 1px solid var(--linea); transition: background .25s; }
+.plato::before { content: ""; position: absolute; left: 0; top: 50%; width: 2px; height: 0; background: var(--nyx); transform: translateY(-50%); transition: height .25s; }
+.plato:hover { background: var(--suave); }
+.plato:hover::before { height: 46%; }
+.plato .num { font-family: var(--serif); font-size: 20px; color: #a8a8b0; }
+.plato .img { width: 64px; height: 64px; border-radius: 14px; overflow: hidden; background: linear-gradient(140deg, #f2f2f5, #e3e3e8); }
+.plato .img img { width: 100%; height: 100%; object-fit: cover; }
+.linea1 { display: flex; align-items: baseline; gap: 12px; }
+.linea1 h3 { font-size: 17px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.linea1 .puntos { flex: 1; border-bottom: 1px dotted #cfcfd6; transform: translateY(-4px); }
+.linea1 .ver { font-size: 13px; color: var(--gris); white-space: nowrap; transition: color .2s; }
+.linea1 .ver::after { content: " →"; }
+.plato:hover .ver { color: var(--tinta); }
+.plato p { color: var(--gris); font-size: 14.5px; margin-top: 2px; }
+
+/* ==== Contacto ==== */
+.contacto { text-align: center; padding: 90px 0 70px; border-top: 1px solid var(--linea); }
+.contacto h2 { font-size: clamp(40px, 6vw, 60px); line-height: 1.05; }
+.contacto p { color: var(--gris); margin: 12px 0 28px; }
+.redes { display: flex; gap: 28px; justify-content: center; margin-top: 26px; font-size: 14px; }
+.redes a { color: var(--gris); border-bottom: 1px solid #d6d6dc; padding-bottom: 2px; transition: color .2s, border-color .2s; }
+.redes a:hover { color: var(--tinta); border-color: var(--tinta); }
+.pie { text-align: center; color: #a8a8b0; font-size: 13px; padding: 0 0 40px; }
+
+/* ==== Ficha de proyecto ==== */
+.ficha { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; }
+.volver { display: inline-block; font-size: 14px; color: var(--gris); margin-bottom: 32px; transition: color .2s; }
+.volver:hover { color: var(--tinta); }
+.ficha .num { display: block; font-family: var(--serif); font-size: 22px; color: #a8a8b0; margin-bottom: 4px; }
+.ficha h1 { font-size: clamp(40px, 7vw, 64px); line-height: 1.05; margin-bottom: 12px; }
+.ficha .resumen { color: var(--gris); font-size: 19px; margin-bottom: 24px; }
+.ficha .portada-img { aspect-ratio: 16 / 9; border-radius: 20px; background: linear-gradient(140deg, #f2f2f5, #e3e3e8); display: grid; place-items: center; color: #a8a8b0; margin: 28px 0 40px; overflow: hidden; }
+.ficha h2 { font-size: 30px; margin: 36px 0 10px; }
+.ficha p, .ficha li { color: var(--texto); }
+.ficha ul { padding-left: 20px; }
+.ficha li { margin-bottom: 6px; }
+.ficha li::marker { color: var(--nyx); }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 8px; }
+.etiquetas span { border: 1px solid var(--linea); border-radius: 999px; padding: 3px 12px; font-size: 13px; color: var(--gris); }
+.ficha .acciones { margin: 40px 0 0; }
+.siguiente { border-top: 1px solid var(--linea); margin-top: 56px; padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+.siguiente a { color: var(--gris); transition: color .2s; }
+.siguiente a:hover { color: var(--tinta); }
+
+/* ==== Móvil ==== */
+@media (max-width: 860px) {
+  .portada { grid-template-columns: 1fr; padding: 32px 0 48px; text-align: center; }
+  .escena { grid-row: 1; width: min(250px, 62vw); margin-bottom: 8px; }
+  .portada p.intro { margin: 0 auto; }
+  .acciones { justify-content: center; }
+  .cifras { display: grid; grid-template-columns: repeat(2, minmax(120px, auto)); justify-content: center; gap: 22px 36px; }
+  .bloque-video { margin-bottom: 72px; }
+}
+@media (max-width: 760px) {
+  .cabecera ul { gap: 16px; }
+  .logo { font-size: 14px; line-height: 1.2; max-width: 150px; }   /* el nombre completo pasa a dos líneas */
+  .idioma { font-size: 13px; }
+  .plato { grid-template-columns: 28px 48px 1fr; gap: 12px; padding: 16px 8px; }
+  .plato .img { width: 48px; height: 48px; border-radius: 10px; }
+  .linea1 .puntos, .linea1 .ver { display: none; }
+  .linea1 h3 { white-space: normal; }
+  .cifras b { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="titulo">Hugo Esteban Gómez Molina · Programador</title>
+<meta name="description" data-i18n-meta="meta" content="Portafolio de Hugo Esteban Gómez Molina, programador y creador de Nyx, un asistente de voz hecho a medida.">
+<link rel="icon" href="assets/luna.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<header class="cabecera"><nav class="wrap">
+  <a class="logo" href="./"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M40 6a26 26 0 1 0 18 44A22 22 0 0 1 40 6z" fill="currentColor"/></svg>Hugo Esteban Gómez Molina</a>
+  <ul>
+    <li><a href="#proyectos" data-i18n="nav.proyectos">Proyectos</a></li>
+    <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
+    <li><button class="idioma" type="button" data-idioma="en" lang="en">English</button></li>
+  </ul>
+</nav></header>
+
+<main class="wrap">
+  <section class="portada">
+    <div>
+      <span class="eti" data-i18n="eti">Programador · Creador de Nyx</span>
+      <h1 class="serif" data-i18n-html="h1">Le dices <em>«Nyx»</em> y la casa responde.</h1>
+      <p class="intro"><span data-i18n="intro">Construyo Nyx, un asistente de voz hecho a medida: controla el PC, la tele, la luz y el móvil, escucha en local y piensa en la nube. Python, Kotlin y JavaScript, y mucha prueba.</span> <span data-i18n="claude">Lo he construido con ayuda de Claude Code: yo decidía qué hacer y cómo debía comportarse, y lo probaba en mis aparatos.</span></p>
+      <div class="acciones"><a class="btn" href="#proyectos"><span class="punto"></span><span data-i18n="btn.proyectos">Ver proyectos</span></a><a class="btn sec" href="#contacto" data-i18n="btn.contacto">Contacto</a></div>
+      <div class="cifras">
+        <div><b>1</b><span data-i18n="cifra.proyecto">proyecto, 15 módulos</span></div>
+        <div><b data-i18n="cifra.n.pruebas">1.200+</b><span data-i18n="cifra.pruebas">pruebas automáticas</span></div>
+        <div><b>300+</b><span data-i18n="cifra.commits">commits</span></div>
+        <div><b>3</b><span data-i18n="cifra.lenguajes">lenguajes</span></div>
+      </div>
+    </div>
+
+    <!-- Luna propia (SVG) con el efecto del fondo animado de Nyx: niebla que respira + luna + brillo que late.
+         Para cambiar la luna, sustituye solo assets/luna/luna.svg (el brillo se hace desde ella). -->
+    <div class="escena" aria-hidden="true">
+      <div class="niebla"></div>
+      <img class="luna-img" src="assets/luna/luna.svg" alt="" width="330" height="440" decoding="async">
+      <img class="brillo-img" src="assets/luna/luna.svg" alt="" width="330" height="440" decoding="async">
+    </div>
+  </section>
+
+  <!-- Vídeo de Nyx: cuando lo tengas, cambia el <div class="play"> por:
+       <video src="assets/nyx.mp4" poster="assets/nyx.jpg" controls playsinline preload="none"></video> -->
+  <div class="bloque-video"><div class="video"><div class="play"><i></i><span data-i18n="video">Vídeo de Nyx funcionando (próximamente)</span></div></div></div>
+
+  <section class="carta" id="proyectos">
+    <div class="carta-cabecera"><span class="eti" data-i18n="carta.eti">Menú</span><h2 class="serif" data-i18n="carta.titulo">Proyectos de la casa</h2></div>
+    <!-- De momento solo 01 enlaza a una ficha de ejemplo. -->
+    <a class="plato" href="proyectos/nyx.html"><span class="num">01</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p1.n">Asistente de voz</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p1.d">Palabra de activación en local, IA en la nube con respaldos y voz por streaming.</p></div></a>
+    <a class="plato" href="#"><span class="num">02</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p2.n">Memoria</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p2.d">Recuerdos en notas Markdown; a la IA solo le llegan los que importan.</p></div></a>
+    <a class="plato" href="#"><span class="num">03</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p3.n">App del móvil «Nyx salud»</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p3.d">Kotlin + WebView, Health Connect, holograma 3D y chat.</p></div></a>
+    <a class="plato" href="#"><span class="num">04</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p4.n">Zona del gym</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p4.d">Registro de entrenos, 1RM, progreso y rangos tipo videojuego.</p></div></a>
+    <a class="plato" href="#"><span class="num">05</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p5.n">App del reloj</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p5.d">Wear OS: voz, gestos de muñeca y un despertador que exige andar.</p></div></a>
+    <a class="plato" href="#"><span class="num">06</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p6.n">Mando del Apple TV y la tele</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p6.d">pyatv, SponsorBlock y el control oficial de Samsung, en red local.</p></div></a>
+    <a class="plato" href="#"><span class="num">07</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p7.n">Bot de Telegram</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p7.d">Nyx desde fuera de casa, con lista blanca estricta.</p></div></a>
+    <a class="plato" href="#"><span class="num">08</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p8.n">Alexa</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p8.d">Controlar el Echo y escuchar «dile a Nyx…», sin compras nunca.</p></div></a>
+    <a class="plato" href="#"><span class="num">09</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p9.n">Ventana de letras</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p9.d">Letras sincronizadas con Spotify en una ventana gótica.</p></div></a>
+    <a class="plato" href="#"><span class="num">10</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p10.n">Barra de luz por radio</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p10.d">ESP32 + nRF24 imitando un mando de radio, con CRC16 propio.</p></div></a>
+    <a class="plato" href="#"><span class="num">11</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p11.n">Extensión de Chrome</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p11.d">Mandar la pestaña al PC o a la tele, con firma HMAC.</p></div></a>
+    <a class="plato" href="#"><span class="num">12</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p12.n">Conexión segura</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p12.d">HMAC, antirrepetición y reto-respuesta entre los aparatos y el PC.</p></div></a>
+    <a class="plato" href="#"><span class="num">13</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p13.n">Casa y día a día</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p13.d">Bombilla por UDP, termómetro Bluetooth, alarmas en SQLite y más.</p></div></a>
+    <a class="plato" href="#"><span class="num">14</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p14.n">Control del PC y «la luna»</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p14.d">Modo Stream, vigilante, indicador flotante y fondo animado.</p></div></a>
+    <a class="plato" href="#"><span class="num">15</span><div class="img"></div><div><div class="linea1"><h3 data-i18n="p15.n">Gestos con la cámara</h3><span class="puntos"></span><span class="ver" data-i18n="ver">Ver ficha</span></div><p data-i18n="p15.d">En desarrollo. MediaPipe y reglas geométricas.</p></div></a>
+  </section>
+</main>
+
+<section class="contacto" id="contacto"><div class="wrap">
+  <h2 class="serif" data-i18n="contacto.titulo">Hablemos.</h2>
+  <p data-i18n="contacto.texto">¿Tienes una idea, una oferta o una pregunta sobre Nyx? Escríbeme.</p>
+  <a class="btn" href="mailto:hugoestebangomezmolinad@gmail.com"><span class="punto"></span><span data-i18n="contacto.btn">Enviar un correo</span></a>
+  <div class="redes"><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
+</div></section>
+<footer class="pie" data-i18n="pie">© 2026 · Hugo Esteban Gómez Molina</footer>
+<script src="assets/idioma.js"></script>
+<script>
+// Niebla de la luna: Vanta.js FOG (MIT, assets/lib/LICENSE-vanta.txt) sobre three.js (MIT, assets/lib/LICENSE-three.txt),
+// igual que en el fondo animado de Nyx. Se carga después de la página para no retrasarla. Si el sistema pide
+// "reducir movimiento", la niebla se dibuja igual pero quieta (velocidad 0) y el CSS para el latido.
+"use strict";
+addEventListener("load", () => {
+  const escena = document.querySelector(".escena");
+  if (!escena) return;
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cargar = src => new Promise((ok, mal) => {
+    const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = mal; document.head.appendChild(s);
+  });
+  cargar("assets/lib/three.min.js").then(() => cargar("assets/lib/vanta.fog.min.js")).then(() => {
+    // Colores: los rojos de la página (#FF2A45 y #B0142F) sobre blanco
+    VANTA.FOG({ el: ".niebla", THREE, mouseControls: false, touchControls: false, gyroControls: false, scale: .5, scaleMobile: .5,
+      highlightColor: 0xd8203c, midtoneColor: 0xff5a6e, lowlightColor: 0xffc4cc, baseColor: 0xffffff, blurFactor: .5, speed: quieto ? 0 : 1.1, zoom: 1.4 });
+  }).catch(() => { /* sin WebGL: se queda solo el latido */ });
+  // Si la página no se ve, todo quieto
+  document.addEventListener("visibilitychange", () => escena.classList.toggle("parado", document.hidden));
+});
+</script>
+</body>
+</html>
